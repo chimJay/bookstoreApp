@@ -2,19 +2,10 @@ const Book = require('../models/bookModel')
 
 //create books
 exports.createBook = (req, res) => {
-  //Get book from req.body
-  const book = req.body
-
   //create and save book in DB
   Book.create(
     {
-      name: book.name,
-      author: book.author,
-      category: book.category,
-      discription: book.discription,
-      purchhaseCount: book.purchhaseCount,
-      imageUrl: book.imageUrl,
-      tags: book.tags,
+      ...req.body,
     },
     (err, newBook) => {
       if (err) {
@@ -28,7 +19,15 @@ exports.createBook = (req, res) => {
 
 //Get all books
 exports.getAllBooks = (req, res) => {
-  Book.find({}, (err, books) => {
+  console.log(req.query)
+  let conditions = {}
+  if (req.query.category) {
+    conditions.category = req.query.category
+  }
+  if (req.query.author) {
+    conditions.author = req.query.author
+  }
+  Book.find(conditions, (err, books) => {
     if (err) {
       return res.status(500).json({ message: err })
     } else {

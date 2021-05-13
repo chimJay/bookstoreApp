@@ -14,7 +14,7 @@ const bookSchema = new mongoose.Schema({
 
   category: {
     type: String,
-    enum: ['fiction', 'comic', 'non-fiction'],
+    enum: ['fiction', 'comic', 'non-fiction', 'novel'],
     default: 'fiction',
   },
   purchaseCount: Number,
