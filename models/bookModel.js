@@ -5,7 +5,7 @@ const bookSchema = new mongoose.Schema({
   author: String,
   discription: String,
   category: String,
-  purchhaseCount: Number,
+  purchaseCount: Number,
   imageUrl: String,
   tags: Array,
 })

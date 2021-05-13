@@ -10,6 +10,9 @@ router
   .post(bookController.createBook)
   .get(bookController.getAllBooks)
 
-router.route('/:id').get(bookController.getBook)
+router
+  .route('/:id')
+  .get(bookController.getBook)
+  .patch(bookController.updateBook)
 
 module.exports = router
