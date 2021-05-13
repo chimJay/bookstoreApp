@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 const bookSchema = new mongoose.Schema({
   title: String,
@@ -7,9 +7,9 @@ const bookSchema = new mongoose.Schema({
   category: String,
   purchhaseCount: Number,
   imageUrl: String,
-  tag: Array,
+  tags: Array,
 })
 
-const Book = mongoose.model("Book", bookSchema)
+const Book = mongoose.model('Book', bookSchema)
 
 module.exports = Book
