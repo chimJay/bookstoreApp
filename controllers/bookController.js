@@ -36,3 +36,16 @@ exports.getAllBooks = (req, res) => {
     }
   })
 }
+
+//Get book by id
+exports.getBook = (req, res) => {
+  Book.findById(req.params.id, (err, book) => {
+    if (err) {
+      return res.status(500).json({ message: err })
+    } else if (!book) {
+      return res.status(404).json({ message: 'Book not found' })
+    } else {
+      return res.status(200).json(book)
+    }
+  })
+}
