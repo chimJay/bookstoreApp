@@ -78,3 +78,16 @@ exports.updateBook = (req, res) => {
     }
   )
 }
+
+//Delete book
+exports.deleteBook = (req, res) => {
+  Book.findByIdAndDelete(req.params.id, (err, book) => {
+    if (err) {
+      return res.status(500).json({ message: err })
+    } else if (!book) {
+      return res.status(404).json({ message: 'Book not found' })
+    } else {
+      return res.status(200).json({ message: 'Book deleted successfully' })
+    }
+  })
+}
