@@ -28,7 +28,7 @@ exports.signUp = (req, res) => {
         if (err) {
           return res.status(500).json({ message: err })
         }
-        //hash passwors
+        //hash password
         bcrypt.genSalt(10, (err, salt) => {
           if (err) {
             return res.status(500).json({ message: err })
@@ -45,7 +45,10 @@ exports.signUp = (req, res) => {
               }
               //create jwt token
               jwt.sign(
-                { id: newUser._id },
+                {
+                  id: newUser._id,
+                  userRole: newUser.userRole,
+                },
                 process.env.SECRET,
                 { expiresIn: process.env.EXPIRE_IN },
                 (err, token) => {
@@ -86,7 +89,7 @@ exports.login = (req, res) => {
     }
     //create token and send
     jwt.sign(
-      { id: userFound._id },
+      { id: userFound._id, userRole: userFound.userRole },
       process.env.SECRET,
       {
         expiresIn: process.env.EXPIRE_IN,

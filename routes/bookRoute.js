@@ -1,19 +1,25 @@
 const express = require('express')
 
+//import book controller
 const bookController = require('../controllers/bookController')
 
+//import middlewares files
+const {
+  authenticateUser,
+  checkIfAdmin,
+} = require('../middlewares/authentication')
 //initialize router
 const router = express.Router()
 
 router
   .route('/')
-  .post(bookController.createBook)
-  .get(bookController.getAllBooks)
+  .post(authenticateUser, checkIfAdmin, bookController.createBook)
+  .get(authenticateUser, bookController.getAllBooks)
 
 router
   .route('/:id')
-  .get(bookController.getBook)
-  .patch(bookController.updateBook)
-  .delete(bookController.deleteBook)
+  .get(authenticateUser, bookController.getBook)
+  .patch(authenticateUser, bookController.updateBook)
+  .delete(authenticateUser, bookController.deleteBook)
 
 module.exports = router

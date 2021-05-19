@@ -56,10 +56,10 @@ exports.updateBook = (req, res) => {
 
     {
       new: true,
-      name: req.body.name,
+      author: req.body.author,
       title: req.body.title,
       category: req.body.category,
-      description: req.body.description,
+      discription: req.body.discription,
       imageUrl: req.body.imageUrl,
       purchhaseCount: req.body.purchhaseCount,
       tags: req.body.tags,
